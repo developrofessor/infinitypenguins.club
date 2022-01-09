@@ -86,10 +86,11 @@
         });
 
         document.querySelector('.highlight.roadmap').addEventListener('click', () => {
+            const start = Date.now();
             requestAnimationFrame(function scrollRoadmap() {
                 const roadmap = document.querySelector('.section.roadmap');
                 let distance = roadmap.offsetTop - window.scrollY;
-                if (distance > 0) {
+                if (distance > 0 && (start - Date.now()) < 1000) {
                     window.scroll(0, window.scrollY + distance / 8 + 1);
                     distance = roadmap.offsetTop - window.scrollY;
                     requestAnimationFrame(scrollRoadmap);
