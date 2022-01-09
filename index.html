@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penguins Web</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="https://kit.fontawesome.com/1e2f870ad5.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">
+            ❅
+        </div>
+        <div class="snowflake">
+            ❅
+        </div>
+        <div class="snowflake">
+            ❆
+        </div>
+        <div class="snowflake">
+            ❄
+        </div>
+        <div class="snowflake">
+            ❅
+        </div>
+        <div class="snowflake">
+            ❆
+        </div>
+        <div class="snowflake">
+            ❄
+        </div>
+        <div class="snowflake">
+            ❅
+        </div>
+        <div class="snowflake">
+            ❆
+        </div>
+        <div class="snowflake">
+            ❄
+        </div>
+    </div>
+    <div class="section landing">
+        <div class="highlight">
+            <div class="link" onclick="window.open('https://twitter.com/Inf_Penguins', '_blank')">
+                <i class="fab fa-twitter"></i>
+            </div>
+            <div class="link" onclick="window.open('https://discord.gg/HBm5mXrw', '_blank')">
+                <i class="fab fa-discord"></i>
+            </div>
+        </div>
+        <div class="highlight">Infinity Penguins</div>
+        <div class="highlight roadmap">Roadmap</div>
+        <div class="video">
+            <div class="play-icon">
+                <i class="fas fa-play"></i>
+            </div>
+            <video src="./videos/penguin.mp4" width="200" height="200" />
+        </div>
+        <div class="highlight btn">BUY NOW</div>
+    </div>
+    <div class="section roadmap">
+        <img src="./images/roadmap.png" />
+    </div>
+    <script>
+        document.querySelectorAll('.video').forEach(videoContainer => {
+            const video = videoContainer.querySelector('video');
+            const playButton = videoContainer.querySelector('.play-icon');
+            let pause = false;
+
+            video.volume = 0.025;
+
+            videoContainer.addEventListener('click', () => {
+                if (pause) {
+                    video.pause();
+                    playButton.style.display = 'flex';
+                } else {
+                    video.play();
+                    playButton.style.display = 'none';
+                }
+                pause = !pause;
+            });
+        });
+
+        document.querySelector('.highlight.roadmap').addEventListener('click', () => {
+            requestAnimationFrame(function scrollRoadmap() {
+                const roadmap = document.querySelector('.section.roadmap');
+                let distance = roadmap.offsetTop - window.scrollY;
+                if (distance > 0) {
+                    window.scroll(0, window.scrollY + distance / 8 + 1);
+                    distance = roadmap.offsetTop - window.scrollY;
+                    requestAnimationFrame(scrollRoadmap);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
